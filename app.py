@@ -40,7 +40,6 @@ Help users understand:
 IMPORTANT RESPONSE RULES:
 
 Give very short chatbot-style answers.
-
 Maximum 4 short lines.
 Keep the answer under 70 words.
 
@@ -52,8 +51,6 @@ Give the conclusion first using one of these styles when appropriate:
 Then give only 2 or 3 important reasons or safety suggestions.
 
 Do not write long paragraphs.
-Do not give detailed explanations unless the user specifically asks for details.
-
 Do not claim with 100% certainty that a website is safe or fraudulent
 unless there is sufficient evidence.
 """
@@ -112,60 +109,67 @@ suspicious_keywords = [
 keyword_count = 0
 
 for keyword in suspicious_keywords:
-
     if keyword in domain or keyword in path:
         keyword_count += 1
 
 
 if keyword_count >= 3:
     risk_score += 3
-    reasons.append("The URL contains several keywords commonly used in scam or phishing links.")
+    reasons.append(
+        "The URL contains several keywords commonly used in scam or phishing links."
+    )
 
 elif keyword_count >= 1:
     risk_score += 1
-    reasons.append("The URL contains a potentially sensitive or promotional keyword.")
+    reasons.append(
+        "The URL contains a potentially sensitive or promotional keyword."
+    )
 
 
 # Too many hyphens
 if domain.count("-") >= 3:
     risk_score += 2
-    reasons.append("The domain contains many hyphens, which can sometimes be used in fake domains.")
+    reasons.append(
+        "The domain contains many hyphens, which can sometimes be used in fake domains."
+    )
 
 
 # Very long domain
 if len(domain) > 45:
     risk_score += 2
-    reasons.append("The domain name is unusually long.")
+    reasons.append(
+        "The domain name is unusually long."
+    )
 
 
 # Too many subdomains
 if domain.count(".") >= 3:
     risk_score += 1
-    reasons.append("The URL contains multiple subdomains.")
+    reasons.append(
+        "The URL contains multiple subdomains."
+    )
 
 
 # @ symbol in URL
 if "@" in original_url:
     risk_score += 3
-    reasons.append("The URL contains an unusual @ symbol.")
+    reasons.append(
+        "The URL contains an unusual @ symbol."
+    )
 
 
 # Final result
 if risk_score >= 5:
-
     verdict = "🚨 HIGH RISK / SUSPICIOUS"
 
 elif risk_score >= 2:
-
     verdict = "⚠️ SUSPICIOUS — VERIFY BEFORE USING"
 
 else:
-
     verdict = "🟡 NO OBVIOUS URL RED FLAGS"
 
 
 if not reasons:
-
     reasons.append(
         "No obvious suspicious URL pattern was detected."
     )
@@ -223,7 +227,7 @@ User message:
         "reply": response.text
     })
 
-except Exception as e:
+except Exception:
 
     return jsonify({
         "reply": "Sorry, something went wrong. Please try again."
@@ -238,7 +242,6 @@ try:
 
     # Check image
     if "image" not in request.files:
-
         return jsonify({
             "reply": "⚠️ Please select an image first."
         })
@@ -248,7 +251,6 @@ try:
 
 
     if image_file.filename == "":
-
         return jsonify({
             "reply": "⚠️ Please select an image first."
         })
@@ -296,7 +298,7 @@ Maximum 4 short lines and under 70 words.
     })
 
 
-except Exception as e:
+except Exception:
 
     return jsonify({
         "reply": "Sorry, I couldn't analyze this image. Please try again."
