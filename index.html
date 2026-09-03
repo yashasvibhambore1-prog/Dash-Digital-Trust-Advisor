@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DASH - Digital Trust & Safety Advisor</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="chat-container">
+
+        <!-- Header -->
+        <div class="chat-header">
+
+            <div class="bot-avatar">
+                🤖
+            </div>
+
+            <div>
+                <h2>DASH</h2>
+                <p>Digital Trust, Scam & Fraud Advisor</p>
+            </div>
+
+        </div>
+
+
+        <!-- Chat Messages -->
+        <div class="chat-box">
+
+            <div class="message bot-message">
+                Hi! 👋 My name is DASH 🤖<br><br>
+
+                I am your Digital Trust, Scam & Fraud Advisor.
+                How can I help you today? 😊
+            </div>
+
+        </div>
+
+
+        <!-- Options -->
+        <div class="options">
+
+            <button class="option-btn"
+                data-prompt="I want to check whether a website is safe or suspicious.">
+                🌐 Check a Website
+            </button>
+
+            <button class="option-btn"
+                data-prompt="I want to analyze a suspicious message or email. ">
+                📩 Analyze a Message
+            </button>
+
+            <button class="option-btn"
+                data-prompt="I want to check whether an online product offer is genuine or suspicious.">
+                🛒 Check an Offer
+            </button>
+
+            <button class="option-btn"
+                data-prompt="Give me 4 short and useful digital safety tips.">
+                🔐 Safety Tips
+            </button>
+
+        </div>
+
+
+        <!-- Input -->
+        <div class="input-area">
+
+            <!-- Upload button -->
+            <button type="button" id="upload-btn" title="Upload image">
+                📎
+            </button>
+
+            <!-- Hidden image selector -->
+            <input
+                type="file"
+                id="image-input"
+                accept="image/*"
+                hidden
+            >
+
+            <!-- Text input -->
+            <input
+                type="text"
+                id="user-input"
+                placeholder="Ask DASH anything..."
+            >
+
+            <!-- Send button -->
+            <button type="button" id="send-btn">
+                ➤
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Connect JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
